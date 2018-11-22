@@ -27,3 +27,5 @@ For example, the result will be:
 ```JSON
 [0, 1, 2, 1, 1]
 ```
+## Implementation
+All implementation is done in single [main.py](ds_prep_euclidean.py/main.py) file.
