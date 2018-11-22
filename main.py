@@ -29,7 +29,5 @@ with open("data.txt", "r") as data_src:
             if len(dist) == 5:
                 data_sink.write("%s\n" % dist)
                 dist.clear()
-            # prev, cur = v[0], v[1]
-            # dis = [_euc_dist(prev[i], cur[i]) for i in range(0, n)]
-            # data_sink.write(json.dumps(dis))
+                
 print("Done in", time.perf_counter() - start_time, "s")
