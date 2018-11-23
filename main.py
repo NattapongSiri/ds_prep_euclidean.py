@@ -4,6 +4,8 @@ import json
 from math import sqrt
 import time
 
+import numpy as np
+
 def _euc_dist(p1, p2):
     return sqrt(
         pow(p1[0] - p2[0], 2) +
@@ -18,16 +20,19 @@ def pairwise(iterable):
     return zip(a, b)
 
 start_time = time.perf_counter()
+np.set_printoptions(floatmode="maxprec", precision=15)
+
 with open("data.txt", "r") as data_src:
     with open("processed.txt", "w") as data_sink:
         n = 5
-        val = (_euc_dist(pair[0][i], pair[1][i]) for pair in pairwise((ast.literal_eval(line) for line in data_src)) for i in range(0, n))
-        dist = []
-        for v in val:
-            dist.append(v)
-            
-            if len(dist) == 5:
-                data_sink.write("%s\n" % dist)
-                dist.clear()
-                
+        pair = pairwise((ast.literal_eval(line) for line in data_src))
+        for records in pair:
+            array = np.array(list(records), dtype=float)
+            record_1 = array[ 0:1 , 0:5, : ]
+            record_2 = array[ 1:2 , 0:5, : ]
+            diff_sqr = (record_1 - record_2) ** 2
+            sqr_sum = np.sum(diff_sqr, 2)
+            dist = np.sqrt(sqr_sum).squeeze()
+            data_sink.write("%s\n" % np.array2string(dist))
+        
 print("Done in", time.perf_counter() - start_time, "s")
