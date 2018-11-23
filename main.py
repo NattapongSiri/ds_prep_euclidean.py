@@ -3,15 +3,7 @@ from itertools import islice, tee
 import json
 from math import sqrt
 import time
-
 import numpy as np
-
-def _euc_dist(p1, p2):
-    return sqrt(
-        pow(p1[0] - p2[0], 2) +
-        pow(p1[1] - p2[1], 2) +
-        pow(p1[2] - p2[2], 2)
-    )
 
 def pairwise(iterable):
     "s -> (s0,s1), (s1,s2), (s2, s3), ..."
