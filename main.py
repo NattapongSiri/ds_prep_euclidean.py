@@ -10,7 +10,7 @@ def pairwise(iterable):
     return zip(a, b)
 
 start_time = time.perf_counter()
-np.set_printoptions(floatmode="maxprec", precision=15)
+np.set_printoptions(floatmode="fixed", precision=15, linewidth=100000)
 
 with open("data.txt", "r") as data_src:
     with open("processed.txt", "w") as data_sink:
@@ -23,6 +23,6 @@ with open("data.txt", "r") as data_src:
             diff_sqr = (record_1 - record_2) ** 2
             sqr_sum = np.sum(diff_sqr, 2)
             dist = np.sqrt(sqr_sum).squeeze()
-            data_sink.write("%s\n" % np.array2string(dist))
+            data_sink.write("%s\n" % np.array2string(dist, separator=", "))
         
 print("Done in", time.perf_counter() - start_time, "s")
