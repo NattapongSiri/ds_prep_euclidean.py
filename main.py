@@ -1,4 +1,3 @@
-import ast
 from itertools import islice, tee
 import json
 from math import sqrt
@@ -21,7 +20,7 @@ start_time = time.perf_counter()
 with open("data.txt", "r") as data_src:
     with open("processed.txt", "w") as data_sink:
         n = 5
-        val = (_euc_dist(pair[0][i], pair[1][i]) for pair in pairwise((ast.literal_eval(line) for line in data_src)) for i in range(0, n))
+        val = (_euc_dist(pair[0][i], pair[1][i]) for pair in pairwise((json.loads(line) for line in data_src)) for i in range(0, n))
         dist = []
         for v in val:
             dist.append(v)
