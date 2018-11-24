@@ -1,0 +1,6 @@
+__*__
+.vscode
+*~
+*.whl
+Pipfile*
+processed.txt
