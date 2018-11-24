@@ -1,7 +1,5 @@
-import ast
 from itertools import islice, tee
 import json
-from math import sqrt
 import time
 import numpy as np
 
@@ -17,7 +15,7 @@ np.set_printoptions(floatmode="maxprec", precision=15)
 with open("data.txt", "r") as data_src:
     with open("processed.txt", "w") as data_sink:
         n = 5
-        pair = pairwise((ast.literal_eval(line) for line in data_src))
+        pair = pairwise((json.loads(line) for line in data_src))
         for records in pair:
             array = np.array(list(records), dtype=float)
             record_1 = array[ 0:1 , 0:5, : ]

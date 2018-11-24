@@ -1,4 +1,6 @@
+__pycache__
 *~
 *.whl
 Pipfile*
 .vscode
+processed.txt
