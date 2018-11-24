@@ -1,4 +1,3 @@
-import ast
 from itertools import islice, tee
 import json
 from math import sqrt
@@ -29,5 +28,4 @@ with open("data.txt", "r", buffering=32*2**20) as data_src:
             records[0] = records[1]
             records[1] = json.loads(line)
             
-                
 print("Done in", time.perf_counter() - start_time, "s")
